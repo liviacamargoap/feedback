@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static',filename='styles/index.css')}}">
+    <title>pagina principal</title>
+    <style>
+        form{
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+    </style>
+</head>
+<body>
+    <form action="/post/mensagem" method="post">
+        <label for="user">usuario</label>
+        <input type="text" name="user" id="user">
+        <label for="comment">comentario</label>
+        <textarea name="comment" id="comment" cols="30" rows="8"></textarea>
+        <button type="submit"><a href="">enviar</a> </button>
+    </form>
+
+    <div>
+        <table>
+            <tr>
+                <th>usuario</th>
+                <th>data e hora</th>
+                <th>comentario</th>
+                <th>curtidas</th>
+                <th>ações</th>
+            </tr>
+            {%for mensagem in mensagens%}
+            <tr>
+                <th>{{mensagem.nome}}</th>
+                <th>{{mensagem.data_hora}}</th>
+                <th>{{mensagem.comentario}}</th>
+                <th>{{mensagem.curtidas}}</th>
+                <th><a href="/deletar/mensagem/{{mensagem.cod_comentario}}">deletar</a> <a href="/put/mensagem/curtida/{{mensagem.cod_comentario}}">curtir</a> <a href="/put/mensagem/descurtida/{{mensagem.cod_comentario}}">descurtir</a></th>
+            </tr>
+        {%endfor%}
+        </table>
+        
+    </div>
+
+</body>
+</html>
