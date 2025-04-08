@@ -1,4 +1,4 @@
-from flask import Flask,render_template,request,redirect
+from flask import Flask,render_template,request,redirect, session
 from datetime import datetime
 import mysql.connector
 from data.conexao import Conexao
@@ -8,6 +8,8 @@ from model.controller_usuario import User
 
 
 app = Flask(__name__)
+
+app.secret_key="12345"
 
 @app.route("/comentario")
 def pagina_comentarios():
@@ -58,9 +60,13 @@ def pagina_login():
 def login_usuario():
     login = request.form.get("login")
     password = request.form.get("password")
-
     User.logar_usuario(login,password)
     return redirect("/comentario")
 
+@app.route("/logoff")
+def logoff():
+    session.clear()
+    return redirect("/cadastro")
 
-app.run(debug=True)
+if __name__=="__main__":
+    app.run(host="0.0.0.0", port=8080)

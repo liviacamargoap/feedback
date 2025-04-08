@@ -4,8 +4,8 @@ class Conexao:
 
     def criar_conexao():
         conexao = mysql.connector.connect(
-        host="10.110.131.18", 
-        port=3306, 
+        host="bdgodofredo-alexstocco-93db.b.aivenclound.com", 
+        port= 27974, 
         user="3ds", 
         password="banana", 
         database="db_feedback"

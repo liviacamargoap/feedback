@@ -1,10 +1,8 @@
 from hashlib import sha256
 from data.conexao import Conexao
 
-class User:
-    name_logged = ""
-    login_logged = ""
 
+class User:
     def cadastrar_usuario(login,name,password):
 
         #Criptografando a senha
@@ -23,13 +21,16 @@ class User:
         conexao.close()
 
     def logar_usuario(login,password):
-        conexao = Conexao.criar_conexao()
-        cursor=conexao.cursor(dictionary=True)
-        sql="SELECT login,senha,nome FROM tb_usuarios WHERE login=%s AND senha=%s"
-        valores=(login,password)
-        cursor.execute(sql,valores)
-        resultado=cursor.fetchone()
-        if resultado:
-            name_logged=resultado["nome"]
-            login_logged=resultado["login"]
 
+        conexao = Conexao.criar_conexao()
+        cursor = conexao.cursor(dictionary=True)
+        sql ="SELECT login,senha,nome FROM tb_usuarios WHERE login=%s AND senha=%s"
+        valores = (login,password)
+        cursor.execute(sql,valores)
+        resultado = cursor.fetchone()
+
+        if resultado:
+            
+            return True
+        else:
+            return False

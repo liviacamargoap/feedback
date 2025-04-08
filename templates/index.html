@@ -14,15 +14,23 @@
         }
     </style>
 </head>
+
 <body>
+
+    <header class="bem-vindo">
+        <h1>Bem-vindo, {{ session['username'] }}!</h1>
+
+    </header>
+
     <form action="/post/mensagem" method="post">
         <label for="user">usuario</label>
         <input type="text" name="user" id="user">
         <label for="comment">comentario</label>
         <textarea name="comment" id="comment" cols="30" rows="8"></textarea>
         <button type="submit"><a href="">enviar</a> </button>
+        
     </form>
-
+        <button type="button"><a href="/logoff">LogOff</a> </button>
     <div>
         <table>
             <tr>
